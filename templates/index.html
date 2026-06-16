@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Pulse - Live Updates & Tracker</title>
+    <meta name="description" content="Stay updated with the latest Google Cloud BigQuery release notes. Track features, announcements, and issues in real-time. Select and tweet updates instantly.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Background glowing decorative blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Application Header -->
+        <header>
+            <div class="brand">
+                <h1>
+                    <!-- Custom SVG representing BigQuery Release Pulse -->
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                    </svg>
+                    BigQuery Release Pulse
+                </h1>
+                <p>Track, filter, and share Google Cloud BigQuery updates as they happen</p>
+            </div>
+            <div class="header-actions">
+                <button id="refresh-btn" class="btn" title="Fetch latest release notes">
+                    <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-linecap="round"></circle>
+                    </svg>
+                    <span class="btn-text">Refresh Feed</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Controls (Filters, Search) -->
+        <section class="controls-panel">
+            <div class="search-wrapper">
+                <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input type="text" id="search-input" class="search-input" placeholder="Search keywords, dates, features...">
+            </div>
+            <div class="filter-wrapper">
+                <select id="type-filter" class="select-filter">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Main Release Notes List -->
+        <main id="updates-list" class="updates-list">
+            <!-- Dynamically populated card contents or skeletons go here -->
+        </main>
+    </div>
+
+    <!-- Bulk Action Floating Bar -->
+    <div id="bulk-action-bar" class="bulk-action-bar">
+        <span id="selected-count" class="selected-count">0 updates selected</span>
+        <button id="bulk-tweet-btn" class="btn">
+            <svg fill="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+            </svg>
+            Tweet Selected
+        </button>
+        <button id="clear-selection-btn" class="btn btn-secondary">Clear</button>
+    </div>
+
+    <!-- Tweet Modal Overlay -->
+    <div id="tweet-modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Share on X (Twitter)</h2>
+                <button id="modal-close" class="modal-close" title="Close modal">&times;</button>
+            </div>
+            <div class="tweet-composer">
+                <textarea id="tweet-textarea" class="tweet-textarea" maxlength="300" placeholder="What's happening?"></textarea>
+                <div class="composer-footer">
+                    <span id="char-counter" class="char-counter">0 / 280</span>
+                    <button id="confirm-tweet-btn" class="btn">
+                        <svg fill="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                        </svg>
+                        Tweet Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
